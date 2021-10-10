@@ -1,12 +1,18 @@
 {
-  "name": "local-api",
+  "name": "@clijsnote/local-api",
   "version": "1.0.0",
   "description": "",
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "dist"
+  ],
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "start": "tsc --watch --preserveWatchOutput",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prepublishOnly": "tsc"
   },
   "keywords": [],
   "author": "",
@@ -15,7 +21,7 @@
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "http-proxy-middleware": "^2.0.1",
-    "local-client": "^0.1.0"
+    "@clijsnote/local-client": "^0.1.0"
   },
   "devDependencies": {
     "@types/cors": "^2.8.12",

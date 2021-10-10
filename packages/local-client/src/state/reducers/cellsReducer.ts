@@ -5,7 +5,7 @@ import { Cell } from "../cell";
 
 export interface CellState {
   loading: boolean;
-  error: boolean | null;
+  error: string | null;
   order: string[];
   data: {
     [key: string]: Cell;
@@ -22,6 +22,26 @@ const initialState: CellState = {
 
 const reducer = produce((state: CellState = initialState, action: Action) => {
     switch(action.type) {
+      case ActionTypes.SAVE_CELLS_ERROR:
+        state.error = action.payload;
+        return state;
+      case ActionTypes.FETCH_CELLS:
+        state.loading = true;
+        state.error = null;
+        return state;
+      case ActionTypes.FETCH_CELLS_COMPLEATE:
+        state.order = action.payload.map(cell => cell.id);
+        state.data = action.payload.reduce((acc, cell)=> {
+          acc[cell.id] = cell;
+          return acc;
+        }, {} as CellState['data'])
+        return state;
+      case ActionTypes.FETCH_CELLS_ERROR:
+        state.loading = false;
+        state.error = action.payload;
+
+        return state
+
       case ActionTypes.MOVE_CELL:
         const {direction } = action.payload;
         const index = state.order.findIndex((id)=> id === action.payload.id);
