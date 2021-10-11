@@ -1,6 +1,6 @@
 import path from "path";
 import { Command } from "commander";
-import { serve } from "@clijsnotex/local-api";
+import { serve } from "@jsnotexcli/local-api";
 
 const isProduction = process.env.NODE_ENV === 'production';
 
