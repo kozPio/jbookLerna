@@ -1,13 +1,16 @@
 {
-  "name": "@clijsnotex/local-client",
-  "version": "1.1.2",
+  "name": "@jsnotexcli/local-client",
+  "version": "1.2.4",
   "publishConfig": {
     "access": "public"
   },
   "files": [
     "build"
   ],
-  "devdDependencies": {
+  "dependencies": {
+    "react-cache-buster": "^0.1.5"
+  },
+  "devDependencies": {
     "@fortawesome/fontawesome-free": "^5.15.4",
     "@monaco-editor/react": "3.7.5",
     "@testing-library/jest-dom": "^5.14.1",
@@ -22,7 +25,7 @@
     "@types/react-redux": "7.1.15",
     "@types/react-resizable": "^1.7.2",
     "@uiw/react-md-editor": "2.1.1",
-    "axios": "0.21.1",
+    "axios": "^0.22.0",
     "bulmaswatch": "^0.8.1",
     "esbuild-wasm": "0.8.27",
     "immer": "^9.0.6",
@@ -46,7 +49,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run generate-meta-tag && react-scripts build",
+    "generate-meta-tag": "node ./node_modules/react-cache-buster/dist/generate-meta-tag.js"
   },
   "eslintConfig": {
     "extends": [
@@ -66,5 +70,5 @@
       "last 1 safari version"
     ]
   },
-  "gitHead": "90ca7216a2fa5027c9e6294de4b5f69f7d6cd144"
+  "gitHead": "537034acd171a4641baa5edcd232fae4fc044f31"
 }

@@ -1,6 +1,6 @@
 {
-  "name": "@clijsnotex/local-api",
-  "version": "1.1.2",
+  "name": "@jsnotexcli/local-api",
+  "version": "1.2.4",
   "description": "",
   "publishConfig": {
     "access": "public"
@@ -18,14 +18,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@clijsnotex/local-client": "^1.1.2",
+    "@jsnotexcli/local-client": "^1.2.3",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "http-proxy-middleware": "^2.0.1"
   },
-  "devDependencies": {
-    "@types/cors": "^2.8.12",
-    "@types/express": "^4.17.13"
-  },
-  "gitHead": "90ca7216a2fa5027c9e6294de4b5f69f7d6cd144"
+  "gitHead": "537034acd171a4641baa5edcd232fae4fc044f31"
 }
