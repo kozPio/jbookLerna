@@ -8,11 +8,18 @@ import {
   MoveCellAction,
   InsertCellAfterAction,
   Direction,
+  BundleStartAction,
+  BundleCompleateAction,
 } from '../actions';
 import { Cell, CellTypes } from '../cell';
 import bundle from '../../bundler';
 import { RootState } from '../reducers';
 import { CellState } from '../reducers/cellsReducer';
+
+export interface Bundle {
+  code: string;
+  err: string;
+}
 
 export const updateCell = (id: string, content: string): UpdateCellAction => {
   return {
@@ -114,5 +121,25 @@ export const saveCells = () => {
         });
       }
     }
+  };
+};
+
+export const bundleStart = (cellId: string): BundleStartAction => {
+  return {
+    type: ActionTypes.BUNDLE_START,
+    payload: { cellId },
+  };
+};
+
+export const bundleComplete = (
+  cellId: string,
+  bundle: Bundle
+): BundleCompleateAction => {
+  return {
+    type: ActionTypes.BUNDLE_COMPLETE,
+    payload: {
+      cellId,
+      bundle,
+    },
   };
 };

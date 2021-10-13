@@ -1,6 +1,7 @@
 import express from 'express';
 import fs from 'fs/promises';
 import path from 'path';
+import { initContent } from './initalContent';
 
 interface Cell {
   id: string;
@@ -23,10 +24,8 @@ export const createCellsRouter = (filename: string, dir: string) => {
     } catch (err) {
       //@ts-ignore
       if (err.code === 'ENOENT') {
-        await fs.writeFile(fullPath, '[]', 'utf-8');
-        res.send([]);
-      } else {
-        throw err;
+        await fs.writeFile(fullPath, JSON.stringify(initContent), 'utf-8');
+        res.send(JSON.stringify(initContent));
       }
     }
   });
@@ -36,10 +35,12 @@ export const createCellsRouter = (filename: string, dir: string) => {
     // serialaze them
     const { cells }: { cells: Cell[] } = req.body;
     // write the cells into the file
-
-    await fs.writeFile(fullPath, JSON.stringify(cells), 'utf-8');
-
-    res.send({ status: 'ok' });
+    try {
+      await fs.writeFile(fullPath, JSON.stringify(cells), 'utf8');
+      res.send({ status: 'ok' });
+    } catch (err) {
+      throw err;
+    }
   });
 
   return router;
